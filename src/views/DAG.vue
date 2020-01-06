@@ -18,7 +18,7 @@ export default {
   },
   methods: {
     init() {
-      const FONT_SIZE = "6px";
+      const FONT_SIZE = "9px";
       const FONT_FAMILY = "sans-serif";
       const LINE_HEIGHT = 1.2;
       const WHITE_COLOR = "#FFF";
@@ -38,9 +38,8 @@ export default {
         boxSelectionEnabled: true,
         autounselectify: true,
         motionBlur: false,
-        maxZoom: 2.5,
-        minZoom: 2,
-
+        maxZoom: 2.2,
+        minZoom: 1.5,
         textureOnViewport: false
       };
 
@@ -55,7 +54,7 @@ export default {
             "text-halign": "center",
             "text-valign": "center",
             "text-wrap": "wrap",
-            "text-margin-y": -2,
+            "text-margin-y": 0,
             "text-max-width": 180,
             "text-background-padding": 3,
             label: node => node.data("formatLabel"),
@@ -161,11 +160,11 @@ export default {
             {
               data: {
                 id: "1",
-                formatLabel: "输出层n1",
+                formatLabel: "输出层",
                 shape: "rectangle",
                 backgroundColor: "#F56C6C",
-                width: 35,
-                height: 35
+                width: 45,
+                height: 45
               },
               classes: "multiline-manual"
             },
@@ -175,8 +174,8 @@ export default {
                 formatLabel: "中间层",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
-                width: 25,
-                height: 25
+                width: 35,
+                height: 35
               }
             },
             {
@@ -185,8 +184,8 @@ export default {
                 formatLabel: "中间层n3",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
-                width: 35,
-                height: 35
+                width: 40,
+                height:40
               }
             },
             {
@@ -195,8 +194,8 @@ export default {
                 formatLabel: "中间层n4",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
-                width: 35,
-                height: 35
+                width:40,
+                height: 40
               }
             },
             {
@@ -205,8 +204,8 @@ export default {
                 formatLabel: "中间层",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
-                width: 25,
-                height: 25
+                width: 35,
+                height: 35
               }
             }
           ],
