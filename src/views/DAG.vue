@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="cytoscape" id="cy"></div>
+    <div id="cy"></div>
   </div>
 </template>
 
@@ -38,8 +38,9 @@ export default {
         boxSelectionEnabled: true,
         autounselectify: true,
         motionBlur: false,
-        maxZoom: 2,
-        minZoom: 0.2,
+        maxZoom: 2.5,
+        minZoom: 2,
+
         textureOnViewport: false
       };
 
@@ -129,12 +130,12 @@ export default {
         name: "dagre",
         idealEdgeLength: 60,
         nodeOverlap: 20,
-        refresh: 20,
+        //refresh: 20,
         fit: true,
         nodeSpacing: 5, //
         edgeLengthVal: 45, //
         animate: true,
-        //  randomize: false,
+        randomize: false,
         componentSpacing: 20,
         nodeRepulsion: 400,
         edgeElasticity: 10,
@@ -151,13 +152,7 @@ export default {
 
       const cy = cytoscape({
         container: document.getElementById("cy"), //获取定义的节点容器
-
-        boxSelectionEnabled: true,
-        autounselectify: true,
-        motionBlur: false,
-        maxZoom: 2.5,
-        minZoom: 0.2,
-        textureOnViewport: false,
+        ...viewportOptions,
         style,
         layout,
         elements: {
@@ -271,7 +266,7 @@ export default {
         var div = document.createElement("div");
         div.classList.add("popper-div");
         div.innerHTML = text;
-        document.body.appendChild(div);
+        document.getElementById("cy").appendChild(div);
         return div;
       };
 
@@ -299,13 +294,15 @@ export default {
 
       node1.on("position", update1);
       node2.on("position", update2);
+      cy.on("pan zoom resize", update1);
+      cy.on("pan zoom resize", update2);
     }
   }
 };
 </script>
 
 <style lang="scss">
-.cytoscape {
+#cy {
   background: #dee0db;
   width: 800px;
   height: 800px;
