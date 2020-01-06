@@ -2,6 +2,13 @@
 
 基于Vue、Cytoscape.js的有向无环图的可视化
 
+
+
+## 效果图
+
+
+<img src="./src/assets/dag.png">
+
 ## Project setup
 ```
 npm install

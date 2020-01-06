@@ -167,7 +167,7 @@ export default {
                 id: "1",
                 formatLabel: "输出层n1",
                 shape: "rectangle",
-                backgroundColor: "#F25A29",
+                backgroundColor: "#F56C6C",
                 width: 40,
                 height: 40
               },
