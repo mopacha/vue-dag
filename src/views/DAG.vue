@@ -55,6 +55,7 @@ export default {
             "text-halign": "center",
             "text-valign": "center",
             "text-wrap": "wrap",
+            "text-margin-y": -2,
             "text-max-width": 180,
             "text-background-padding": 3,
             label: node => node.data("formatLabel"),
@@ -163,19 +164,19 @@ export default {
                 formatLabel: "输出层n1",
                 shape: "rectangle",
                 backgroundColor: "#F56C6C",
-                width: 40,
-                height: 40
+                width: 35,
+                height: 35
               },
               classes: "multiline-manual"
             },
             {
               data: {
                 id: "2",
-                formatLabel: "中间层n2",
+                formatLabel: "中间层",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
-                width: 35,
-                height: 35
+                width: 25,
+                height: 25
               }
             },
             {
@@ -201,11 +202,11 @@ export default {
             {
               data: {
                 id: "5",
-                formatLabel: "中间层n5",
+                formatLabel: "中间层",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
-                width: 35,
-                height: 35
+                width: 25,
+                height: 25
               }
             }
           ],
