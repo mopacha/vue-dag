@@ -80,7 +80,7 @@ export default {
             "font-family": FONT_FAMILY,
             "line-height": LINE_HEIGHT,
             color: "#333",
-            width: 1,
+            width: 1.5,
             "arrow-scale": 0.6,
             label: edge => edge.data("label"),
             "line-style": () => "solid",
@@ -238,7 +238,7 @@ export default {
               data: {
                 source: "4",
                 target: "1",
-                lineColor: "#03A9F4"
+                lineColor: "#ff5722"
                 // label: "e41"
               }
             },
