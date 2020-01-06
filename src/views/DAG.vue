@@ -160,7 +160,7 @@ export default {
             {
               data: {
                 id: "1",
-                formatLabel: "输出层",
+                formatLabel: "输出层1",
                 shape: "rectangle",
                 backgroundColor: "#F56C6C",
                 width: 45,
@@ -171,7 +171,7 @@ export default {
             {
               data: {
                 id: "2",
-                formatLabel: "中间层",
+                formatLabel: "中间层2",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
                 width: 35,
@@ -181,7 +181,7 @@ export default {
             {
               data: {
                 id: "3",
-                formatLabel: "中间层n3",
+                formatLabel: "中间层3",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
                 width: 40,
@@ -191,7 +191,7 @@ export default {
             {
               data: {
                 id: "4",
-                formatLabel: "中间层n4",
+                formatLabel: "中间层4",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
                 width:40,
@@ -201,7 +201,7 @@ export default {
             {
               data: {
                 id: "5",
-                formatLabel: "中间层",
+                formatLabel: "中间层5",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
                 width: 35,
