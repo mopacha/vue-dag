@@ -27,8 +27,8 @@ export default {
         boxSelectionEnabled: true,
         autounselectify: true,
         motionBlur: false,
-        maxZoom: 1.8,
-        minZoom: 1,
+        maxZoom: 2,
+        minZoom: 1.4,
         textureOnViewport: false
       };
 
@@ -38,8 +38,8 @@ export default {
           style: {
             "border-width": 1,
             "font-size": FONT_SIZE,
-            //"font-family": FONT_FAMILY,
-            "font-weight": FONT_WEIGHT,
+            "font-family": FONT_FAMILY,
+            //"font-weight": FONT_WEIGHT,
             "line-height": LINE_HEIGHT,
             color: WHITE_COLOR,
             "text-halign": "center",
