@@ -185,7 +185,7 @@ export default {
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
                 width: 40,
-                height:40
+                height: 40
               }
             },
             {
@@ -194,7 +194,7 @@ export default {
                 formatLabel: "中间层4",
                 shape: "ellipse",
                 backgroundColor: "#15b1de",
-                width:40,
+                width: 40,
                 height: 40
               }
             },
@@ -263,11 +263,15 @@ export default {
       });
 
       var makeDiv = function(text) {
-        var div = document.createElement("div");
-        div.classList.add("popper-div");
-        div.innerHTML = text;
-        document.getElementById("cy").appendChild(div);
-        return div;
+        var a = document.createElement("a");
+        a.href = "https://github.com/mopacha/vue-dag";
+        a.target = "_blank";
+        var link = document.createTextNode(text);
+        a.appendChild(link);
+        a.classList.add("popper-div");
+
+        document.getElementById("cy").appendChild(a);
+        return a;
       };
 
       var node1 = cy.getElementById("1");
@@ -306,5 +310,8 @@ export default {
   background: #dee0db;
   width: 800px;
   height: 800px;
+  .popper-div {
+    text-decoration: none;
+  }
 }
 </style>
