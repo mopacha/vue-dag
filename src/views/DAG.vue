@@ -19,27 +19,16 @@ export default {
   methods: {
     init() {
       const FONT_SIZE = "9px";
-      const FONT_FAMILY = "sans-serif";
+      const FONT_WEIGHT = 500;
+      const FONT_FAMILY = "serif";
       const LINE_HEIGHT = 1.2;
       const WHITE_COLOR = "#FFF";
-
-      const DULL_CALSSNAME = "dull";
-      const HOVER_CLASSNAME = "hover";
-
-      const SERVICE_NODE = "SERVICE_NODE";
-      const SYSTEM_NODE = "SYSTEM_NODE";
-      const API_NODE = "API_NODE";
-
-      const NODE_TYPE = "node";
-      const EDGE_TYPE = "edge";
-
-      const HIGHLIGHT_DURATION = 100;
       const viewportOptions = {
         boxSelectionEnabled: true,
         autounselectify: true,
         motionBlur: false,
-        maxZoom: 2.2,
-        minZoom: 1.5,
+        maxZoom: 1.8,
+        minZoom: 1,
         textureOnViewport: false
       };
 
@@ -47,14 +36,16 @@ export default {
         {
           selector: "node",
           style: {
+            "border-width": 1,
             "font-size": FONT_SIZE,
-            "font-family": FONT_FAMILY,
+            //"font-family": FONT_FAMILY,
+            "font-weight": FONT_WEIGHT,
             "line-height": LINE_HEIGHT,
             color: WHITE_COLOR,
             "text-halign": "center",
             "text-valign": "center",
             "text-wrap": "wrap",
-            "text-margin-y": 0,
+            "text-margin-y": -2,
             "text-max-width": 180,
             "text-background-padding": 3,
             label: node => node.data("formatLabel"),
@@ -62,6 +53,7 @@ export default {
             width: node => node.data("width"),
             height: node => node.data("height"),
             "background-color": node => node.data("backgroundColor"),
+            "border-color": node => node.data("borderColor"),
             "background-opacity": 1,
             "overlay-color": WHITE_COLOR,
             "overlay-opacity": 0,
@@ -80,9 +72,9 @@ export default {
             "font-family": FONT_FAMILY,
             "line-height": LINE_HEIGHT,
             color: "#333",
-            width: 1.5,
+            width: 1,
             "arrow-scale": 0.6,
-            label: edge => edge.data("label"),
+            //label: edge => edge.data("label"),
             "line-style": () => "solid",
             "line-color": edge => edge.data("lineColor"),
             "target-arrow-color": edge => edge.data("lineColor"),
@@ -145,8 +137,7 @@ export default {
         initialTemp: 200,
         coolingFactor: 0.95,
         minTemp: 1.0
-
-        // name: 'breadFirstxxx'
+        //name: 'breadFirstxxx'
         //directed: true
       };
 
@@ -161,21 +152,22 @@ export default {
               data: {
                 id: "1",
                 formatLabel: "输出层1",
-                shape: "rectangle",
-                backgroundColor: "#F56C6C",
-                width: 45,
+                shape: "round-rectangle",
+                backgroundColor: "#f39a9a",
+                borderColor: "#f56c6c",
+                width: 50,
                 height: 45
-              },
-              classes: "multiline-manual"
+              }
             },
             {
               data: {
                 id: "2",
                 formatLabel: "中间层2",
                 shape: "ellipse",
-                backgroundColor: "#15b1de",
-                width: 35,
-                height: 35
+                backgroundColor: "#7ebbfa",
+                borderColor: "#1890ff",
+                width: 40,
+                height: 40
               }
             },
             {
@@ -183,9 +175,10 @@ export default {
                 id: "3",
                 formatLabel: "中间层3",
                 shape: "ellipse",
-                backgroundColor: "#15b1de",
-                width: 40,
-                height: 40
+                backgroundColor: "#97d37a",
+                borderColor: "#67c23a",
+                width: 35,
+                height: 35
               }
             },
             {
@@ -193,7 +186,8 @@ export default {
                 id: "4",
                 formatLabel: "中间层4",
                 shape: "ellipse",
-                backgroundColor: "#15b1de",
+                backgroundColor: "#7ebbfa",
+                borderColor: "#1890ff",
                 width: 40,
                 height: 40
               }
@@ -203,7 +197,8 @@ export default {
                 id: "5",
                 formatLabel: "中间层5",
                 shape: "ellipse",
-                backgroundColor: "#15b1de",
+                backgroundColor: "#7ebbfa",
+                borderColor: "#1890ff",
                 width: 35,
                 height: 35
               }
@@ -214,8 +209,7 @@ export default {
               data: {
                 source: "5",
                 target: "1",
-                lineColor: "#03A9F4"
-                // label: "e51"
+                lineColor: "#7f7f7f"
               }
             },
             {
@@ -223,7 +217,6 @@ export default {
                 source: "5",
                 target: "3",
                 lineColor: "#03A9F4"
-                //label: "e53"
               }
             },
             {
@@ -231,7 +224,6 @@ export default {
                 source: "5",
                 target: "2",
                 lineColor: "#03A9F4"
-                // label: "e52"
               }
             },
             {
@@ -239,7 +231,6 @@ export default {
                 source: "4",
                 target: "1",
                 lineColor: "#ff5722"
-                // label: "e41"
               }
             },
             {
@@ -247,7 +238,6 @@ export default {
                 source: "3",
                 target: "1",
                 lineColor: "#03A9F4"
-                // label: "e31"
               }
             },
             {
@@ -255,44 +245,41 @@ export default {
                 source: "2",
                 target: "1",
                 lineColor: "#03A9F4"
-                //label: "e21"
               }
             }
           ]
         }
       });
 
-      var makeDiv = function(text) {
-        var a = document.createElement("a");
+      let makeDiv = function(text) {
+        let a = document.createElement("a");
         a.href = "https://github.com/mopacha/vue-dag";
         a.target = "_blank";
-        var link = document.createTextNode(text);
-        a.appendChild(link);
+        a.innerHTML = text;
         a.classList.add("popper-div");
-
         document.getElementById("cy").appendChild(a);
         return a;
       };
 
-      var node1 = cy.getElementById("1");
-      var node2 = cy.getElementById("2");
+      let node1 = cy.getElementById("1");
+      let node2 = cy.getElementById("2");
 
-      var popper1 = node1.popper({
+      let popper1 = node1.popper({
         content: function() {
-          return makeDiv("【DAG】我是输出层-<br>基于Cytoscape..js");
+          return makeDiv("(1)：我是输出层<br>(2)：基于Cytoscape.js");
         }
       });
 
-      var popper2 = node2.popper({
+      let popper2 = node2.popper({
         content: function() {
           return makeDiv("【DAG】我是中间层");
         }
       });
 
-      var update1 = function() {
+      let update1 = function() {
         popper1.scheduleUpdate();
       };
-      var update2 = function() {
+      let update2 = function() {
         popper2.scheduleUpdate();
       };
 
@@ -311,6 +298,7 @@ export default {
   width: 800px;
   height: 800px;
   .popper-div {
+    font-size: 13px;
     text-decoration: none;
   }
 }
