@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import DAG from '../views/DAG.vue'
+import Dag from '../views/Dag.vue'
 
 Vue.use(VueRouter)
 
@@ -8,7 +8,7 @@ const routes = [
   {
     path: '/',
     name: 'dag',
-    component: DAG
+    component: Dag
   },
   {
     path: '/about',
