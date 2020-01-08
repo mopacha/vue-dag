@@ -8,16 +8,130 @@
 import cytoscape from "cytoscape";
 import dagre from "cytoscape-dagre";
 import popper from "cytoscape-popper";
-
 cytoscape.use(popper);
 cytoscape.use(dagre);
 
 export default {
+  data() {
+    return {
+      nodeList: [
+        {
+          data: {
+            id: 1,
+            layer: "输出层1",
+            text: "(1)：我是输出层<br>(2)：基于Cytoscape.js",
+            url: "https://github.com/mopacha/vue-dag",
+            shape: "round-rectangle",
+            backgroundColor: "#f39a9a",
+            borderColor: "#f56c6c",
+            width: 50,
+            height: 45
+          }
+        },
+        {
+          data: {
+            id: 2,
+            layer: "中间层2",
+            text: "【DAG】我是中间层2",
+            url: "https://github.com/mopacha",
+            shape: "ellipse",
+            backgroundColor: "#7ebbfa",
+            borderColor: "#1890ff",
+            width: 40,
+            height: 40
+          }
+        },
+        {
+          data: {
+            id: 3,
+            layer: "中间层3",
+            text: "I am text3",
+            url: "https://github.com/mopacha/vue-dag",
+            shape: "ellipse",
+            backgroundColor: "#97d37a",
+            borderColor: "#67c23a",
+            width: 35,
+            height: 35
+          }
+        },
+        {
+          data: {
+            id: 4,
+            layer: "中间层4",
+            text: "I am text4",
+            url: "https://github.com/mopacha/vue-dag",
+            shape: "ellipse",
+            backgroundColor: "#7ebbfa",
+            borderColor: "#1890ff",
+            width: 40,
+            height: 40
+          }
+        },
+        {
+          data: {
+            id: 5,
+            layer: "中间层5",
+            text: "I am text5",
+            url: "https://github.com/mopacha/vue-dag",
+            shape: "ellipse",
+            backgroundColor: "#7ebbfa",
+            borderColor: "#1890ff",
+            width: 35,
+            height: 35
+          }
+        }
+      ],
+      edgeList: [
+        {
+          data: {
+            source: 5,
+            target: 1,
+            lineColor: "#7f7f7f"
+          }
+        },
+        {
+          data: {
+            source: 5,
+            target: 3,
+            lineColor: "#03A9F4"
+          }
+        },
+        {
+          data: {
+            source: 5,
+            target: 2,
+            lineColor: "#03A9F4"
+          }
+        },
+        {
+          data: {
+            source: 4,
+            target: 1,
+            lineColor: "#ff5722"
+          }
+        },
+        {
+          data: {
+            source: 3,
+            target: 1,
+            lineColor: "#03A9F4"
+          }
+        },
+        {
+          data: {
+            source: 2,
+            target: 1,
+            lineColor: "#03A9F4"
+          }
+        }
+      ]
+    };
+  },
   mounted() {
-    this.init();
+    this.renderDAG();
   },
   methods: {
-    init() {
+    renderDAG() {
       const FONT_SIZE = "9px";
       const FONT_WEIGHT = 500;
       const FONT_FAMILY = "serif";
@@ -48,7 +162,7 @@ export default {
             "text-margin-y": -2,
             "text-max-width": 180,
             "text-background-padding": 3,
-            label: node => node.data("formatLabel"),
+            label: node => node.data("layer"),
             shape: node => node.data("shape"),
             width: node => node.data("width"),
             height: node => node.data("height"),
@@ -141,119 +255,20 @@ export default {
         //directed: true
       };
 
-      const cy = cytoscape({
+      let cy = cytoscape({
         container: document.getElementById("cy"), //获取定义的节点容器
         ...viewportOptions,
         style,
         layout,
         elements: {
-          nodes: [
-            {
-              data: {
-                id: "1",
-                formatLabel: "输出层1",
-                shape: "round-rectangle",
-                backgroundColor: "#f39a9a",
-                borderColor: "#f56c6c",
-                width: 50,
-                height: 45
-              }
-            },
-            {
-              data: {
-                id: "2",
-                formatLabel: "中间层2",
-                shape: "ellipse",
-                backgroundColor: "#7ebbfa",
-                borderColor: "#1890ff",
-                width: 40,
-                height: 40
-              }
-            },
-            {
-              data: {
-                id: "3",
-                formatLabel: "中间层3",
-                shape: "ellipse",
-                backgroundColor: "#97d37a",
-                borderColor: "#67c23a",
-                width: 35,
-                height: 35
-              }
-            },
-            {
-              data: {
-                id: "4",
-                formatLabel: "中间层4",
-                shape: "ellipse",
-                backgroundColor: "#7ebbfa",
-                borderColor: "#1890ff",
-                width: 40,
-                height: 40
-              }
-            },
-            {
-              data: {
-                id: "5",
-                formatLabel: "中间层5",
-                shape: "ellipse",
-                backgroundColor: "#7ebbfa",
-                borderColor: "#1890ff",
-                width: 35,
-                height: 35
-              }
-            }
-          ],
-          edges: [
-            {
-              data: {
-                source: "5",
-                target: "1",
-                lineColor: "#7f7f7f"
-              }
-            },
-            {
-              data: {
-                source: "5",
-                target: "3",
-                lineColor: "#03A9F4"
-              }
-            },
-            {
-              data: {
-                source: "5",
-                target: "2",
-                lineColor: "#03A9F4"
-              }
-            },
-            {
-              data: {
-                source: "4",
-                target: "1",
-                lineColor: "#ff5722"
-              }
-            },
-            {
-              data: {
-                source: "3",
-                target: "1",
-                lineColor: "#03A9F4"
-              }
-            },
-            {
-              data: {
-                source: "2",
-                target: "1",
-                lineColor: "#03A9F4"
-              }
-            }
-          ]
+          nodes: this.nodeList,
+          edges: this.edgeList
         }
       });
 
-      let makeDiv = function(text) {
+      let makeDiv = function(text, url) {
         let a = document.createElement("a");
-        a.href = "https://github.com/mopacha/vue-dag";
+        a.href = url;
         a.target = "_blank";
         a.innerHTML = text;
         a.classList.add("popper-div");
@@ -261,32 +276,20 @@ export default {
         return a;
       };
 
-      let node1 = cy.getElementById("1");
-      let node2 = cy.getElementById("2");
+      this.nodeList.map((item, index) => {
+        let node = cy.getElementById(item.data.id);
+        let popper = node.popper({
+          content: function() {
+            return makeDiv(item.data.text, item.data.url);
+          }
+        });
 
-      let popper1 = node1.popper({
-        content: function() {
-          return makeDiv("(1)：我是输出层<br>(2)：基于Cytoscape.js");
-        }
+        let update = function() {
+          popper.scheduleUpdate();
+        };
+        node.on("position", update);
+        cy.on("pan zoom resize", update);
       });
-
-      let popper2 = node2.popper({
-        content: function() {
-          return makeDiv("【DAG】我是中间层");
-        }
-      });
-
-      let update1 = function() {
-        popper1.scheduleUpdate();
-      };
-      let update2 = function() {
-        popper2.scheduleUpdate();
-      };
-
-      node1.on("position", update1);
-      node2.on("position", update2);
-      cy.on("pan zoom resize", update1);
-      cy.on("pan zoom resize", update2);
     }
   }
 };
